@@ -177,6 +177,25 @@ void CSVReader::parsePROB(std::vector<float>& probabilities, std::vector<std::ve
 	}
 }
 
+/*
+* RENATO
+*/
+
+void CSVReader::parseWeatherData(WeatherData * wdf_ptr, std::vector<std::vector<std::string>> & DF, int WPeriods, int NCells){
+	int i,j;
+	vector<string> columns;
+    vector<vector<float>> rows;
+	std::string::size_type sz;
+	//Guardamos los nombres de las columnas en columns:
+	for (i=0; i <= WPeriods; i++){
+		columns = DF[0][i];
+		for (j=1; j <= NCells; j++){
+			rows = DF[j][i]
+		}
+
+	}
+	//Set Values con un for
+}
 
 /*
 * Populate Weather DF Spain
