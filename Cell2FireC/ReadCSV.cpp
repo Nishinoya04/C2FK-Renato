@@ -181,20 +181,16 @@ void CSVReader::parsePROB(std::vector<float>& probabilities, std::vector<std::ve
 * RENATO
 */
 
-void CSVReader::parseWeatherData(WeatherData * wdf_ptr, std::vector<std::vector<std::string>> & DF, int WPeriods, int NCells){
-	int i,j;
-	vector<string> columns;
-    vector<vector<float>> rows;
-	std::string::size_type sz;
-	//Guardamos los nombres de las columnas en columns:
-	for (i=0; i <= WPeriods; i++){
-		columns = DF[0][i];
-		for (j=1; j <= NCells; j++){
-			rows = DF[j][i]
-		}
-
-	}
-	//Set Values con un for
+void CSVReader::parseWeatherData(std::vector<std::vector<float>> * ws_ptr, std::vector<std::vector<std::string>> & WindSpeed){
+    int rows = WindSpeed.size();
+    int cols = WindSpeed[0].size();
+    for (int i = 0; i < rows; i++){
+        for (int j = 0; j < cols; j++){
+            float value = std::stof(WindSpeed[i][j]);
+            ws_ptr->push_back(value);
+            ws_ptr++;
+        }
+    }
 }
 
 /*
@@ -210,7 +206,7 @@ void CSVReader::parseWeatherDF(weatherDF * wdf_ptr, std::vector<std::vector<std:
 	//Floats 
 	float ws, waz, tmp, rh;
 	
-	//Ints 
+	//Ints
 	//int scenario;
 	
 	// Loop over cells (populating per row)
@@ -524,25 +520,25 @@ void CSVReader::printWeatherDF(weatherDF wdf){
 	std::cout << " " << wdf.tmp; std::cout << " " << wdf.rh;
 }
 
-/*
-int main()
-{
-	// Creating an object of CSVWriter
-	CSVReader reader("example.csv");
+
+// int main()
+// {
+// 	// Creating an object of CSVWriter
+// 	CSVReader reader("example.csv");
  
-	// Get the data from CSV File
-	std::vector<std::vector<std::string> > dataList = reader.getData();
+// 	// Get the data from CSV File
+// 	std::vector<std::vector<std::string> > dataList = reader.getData();
  
-	// Print the content of row by row on screen
-	for(std::vector<std::string> vec : dataList)
-	{
-		for(std::string data : vec)
-		{
-			std::cout<<data<< " ";
-		}
-		std::cout<<std::endl;
-	}
-	return 0;
+// 	// Print the content of row by row on screen
+// 	for(std::vector<std::string> vec : dataList)
+// 	{
+// 		for(std::string data : vec)
+// 		{
+// 			std::cout<<data<< " ";
+// 		}
+// 		std::cout<<std::endl;
+// 	}
+// 	return 0;
  
-}
-*/
+// }
+
